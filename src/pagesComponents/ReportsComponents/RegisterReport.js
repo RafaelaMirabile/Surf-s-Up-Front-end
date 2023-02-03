@@ -4,13 +4,13 @@ import UserContext from "../../contexts/userContext.js";
 import { postReport } from "../../services/API.js";
 import StokedLevel from "./StokedLevel.js";
 
-export default function RegisterReport({ setAddReport, selectedPointId }) {
+export default function RegisterReport({ selectedPointId, setReload, setAddReport }) {
     const [form, setForm] = useState({
         report: ""
     });
     const [loading, setLoading] = useState(true);
     const [stokedLevel, setStokedLevel] = useState(0);
-    const {userInfos} = useContext(UserContext);
+    const { userInfos } = useContext(UserContext);
 
     const levelOfStokedArray = [
         {
@@ -36,17 +36,18 @@ export default function RegisterReport({ setAddReport, selectedPointId }) {
 
     function reportRequest(e) {
         e.preventDefault();
-        const stoked = levelOfStokedArray.filter(level => level.id === stokedLevel).map(value => value.stokedLevel);  
-        console.log('registerreport',userInfos.name);      
+        const stoked = levelOfStokedArray.filter(level => level.id === stokedLevel).map(value => value.stokedLevel);
         const body = {
             user_name: userInfos.name,
             report: form.report,
             stoked_level: stoked[0]
         };
 
-        postReport(selectedPointId,body).then((response) =>{
-            console.log(response.data)
-        }).catch((error)=>{
+        postReport(selectedPointId, body).then((response) => {
+            console.log(response.data);
+            setAddReport(false);
+            setReload(true);
+        }).catch((error) => {
             console.log(error);
         })
 

@@ -9,8 +9,9 @@ import Report from "../ReportsComponents/Report.js";
 export default function Reports({ selectedPointName, selectedPointId }) {
     const [reports, setReports] = useState([]);
     const [addReport, setAddReport] = useState(false);
+    const [reload, setReload] = useState(false);
     const navigate = useNavigate();
-    const { userInfos, setUserInfos } = useContext(UserContext);
+    const { setUserInfos } = useContext(UserContext);
 
     useEffect(() => {
         getReports(selectedPointId).then((response) => {
@@ -19,10 +20,7 @@ export default function Reports({ selectedPointName, selectedPointId }) {
         }).catch((error) => {
             console.log(error);
         });
-    }, []);
-
-    console.log(reports);
-    console.log(addReport);
+    }, [reload]);
 
     function checkUser() {
         const user = JSON.parse(localStorage.getItem("surfsup"));
@@ -30,7 +28,7 @@ export default function Reports({ selectedPointName, selectedPointId }) {
             if (!user) {
                 setAddReport(false);
                 alert("Faca login para comentar bro!");
-                navigate('signIn');
+                navigate('/signIn');
             } else {
                 setAddReport(true);
                 setUserInfos({
@@ -43,39 +41,43 @@ export default function Reports({ selectedPointName, selectedPointId }) {
         };
     }
 
-    function addReportDiv() {
-        return (
-            <>
-                <AddReport onClick={checkUser}>{addReport ? <>-</> : <>+</>}</AddReport>
-                {addReport ?
-                    <RegisterReport
-                        setAddReport={setAddReport}
-                        selectedPointId={selectedPointId}
-                    />
-                    : ''}
-                {reports.map((report, index) => (
-                    <Report
-                        key={index}
-                        comment={report.report}
-                        userName={report.userName}
-                        stokedLevel={report.stokedLevel}
-                    />
-                ))}
-            </>
-        )
-    }
 
-    const reportDiv = addReportDiv();
     return (
         <>
             <div>{selectedPointName}</div>
             {reports.length === 0 ?
                 <>
-                    {reportDiv}
-                    <>NAO HA REPORTS NESSE PICO AINDA </>
+                    <AddReport onClick={checkUser}>{addReport ? <>-</> : <>+</>}</AddReport>
+                    {addReport ?
+                        <RegisterReport
+                            setAddReport={setAddReport}
+                            selectedPointId={selectedPointId}
+                            setReload={setReload}
+                        />
+                        : ''}
+                    <>NAO HA REPORTS NESSE PICO AINDA</>
                 </>
                 :
-                { reportDiv }
+                <>
+                    <AddReport onClick={checkUser}>{addReport ? <>-</> : <>+</>}</AddReport>
+                    {addReport ?
+                        <RegisterReport
+                            setAddReport={setAddReport}
+                            selectedPointId={selectedPointId}
+                            setReload={setReload}
+                        />
+                        : ''}
+                    {reports.map((report, index) => (
+                        <Report
+                            key={index}
+                            id={report.id}
+                            comment={report.report}
+                            userName={report.userName}
+                            stokedLevel={report.stokedLevel}
+                            setReload={setReload}
+                        />
+                    ))}
+                </>
             }
         </>
     )

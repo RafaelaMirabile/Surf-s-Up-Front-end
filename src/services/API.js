@@ -2,10 +2,10 @@ import axios from "axios";
 
 const URL_BASE = "http://localhost:5000";
 
-function createHeader(){
-    const user = JSON. parse(localStorage.getItem("surfsup"));
-    const config={
-        headers:{
+function createHeader() {
+    const user = JSON.parse(localStorage.getItem("surfsup"));
+    const config = {
+        headers: {
             Authorization: `Bearer ${user.token}`
         },
     };
@@ -27,8 +27,8 @@ async function getForecast(body) {
 }
 
 async function postSignIn(body) {
-const signIn = `${URL_BASE}/signIn`;
-return await axios.post(signIn,body);
+    const signIn = `${URL_BASE}/signIn`;
+    return await axios.post(signIn, body);
 };
 
 async function postSignUp(body) {
@@ -41,9 +41,21 @@ async function getReports(pointId) {
     return await axios.get(reports);
 }
 
-async function postReport(pointId, body){
+async function postReport(pointId, body) {
     const report = `${URL_BASE}/${pointId}`;
     return await axios.post(report, body, createHeader());
 }
 
-export { getPoints, getForecast, getReports, postSignIn, postSignUp, postReport }
+async function deleteReport(reportId) {
+    const report = `${URL_BASE}/${reportId}`;
+    return await axios.delete(report, createHeader());
+}
+export {
+    getPoints,
+    getForecast,
+    getReports,
+    postSignIn,
+    postSignUp,
+    postReport,
+    deleteReport
+}
