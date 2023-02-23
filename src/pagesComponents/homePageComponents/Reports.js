@@ -41,7 +41,6 @@ export default function Reports({ selectedPointName, selectedPointId }) {
         };
     }
 
-
     return (
         <>
             <div>{selectedPointName}</div>
@@ -53,6 +52,7 @@ export default function Reports({ selectedPointName, selectedPointId }) {
                             setAddReport={setAddReport}
                             selectedPointId={selectedPointId}
                             setReload={setReload}
+                            reload={reload}
                         />
                         : ''}
                     <>NAO HA REPORTS NESSE PICO AINDA</>
@@ -65,6 +65,7 @@ export default function Reports({ selectedPointName, selectedPointId }) {
                             setAddReport={setAddReport}
                             selectedPointId={selectedPointId}
                             setReload={setReload}
+                            reload={reload}
                         />
                         : ''}
                     {reports.map((report, index) => (
@@ -75,6 +76,7 @@ export default function Reports({ selectedPointName, selectedPointId }) {
                             userName={report.userName}
                             stokedLevel={report.stokedLevel}
                             setReload={setReload}
+                            reload={reload}
                         />
                     ))}
                 </>

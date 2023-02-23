@@ -27,6 +27,7 @@ async function getForecast(body) {
 }
 
 async function postSignIn(body) {
+    console.log(body);
     const signIn = `${URL_BASE}/signIn`;
     return await axios.post(signIn, body);
 };
@@ -50,6 +51,11 @@ async function deleteReport(reportId) {
     const report = `${URL_BASE}/${reportId}`;
     return await axios.delete(report, createHeader());
 }
+
+async function favRequest(pointId){
+    const fav = `${URL_BASE}/${pointId}`;
+    return await axios.post(fav, createHeader());
+}
 export {
     getPoints,
     getForecast,
@@ -57,5 +63,6 @@ export {
     postSignIn,
     postSignUp,
     postReport,
-    deleteReport
+    deleteReport,
+    favRequest
 }

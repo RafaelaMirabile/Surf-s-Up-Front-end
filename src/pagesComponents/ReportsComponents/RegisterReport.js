@@ -4,7 +4,7 @@ import UserContext from "../../contexts/userContext.js";
 import { postReport } from "../../services/API.js";
 import StokedLevel from "./StokedLevel.js";
 
-export default function RegisterReport({ selectedPointId, setReload, setAddReport }) {
+export default function RegisterReport({ selectedPointId, setReload, setAddReport, reload }) {
     const [form, setForm] = useState({
         report: ""
     });
@@ -46,7 +46,7 @@ export default function RegisterReport({ selectedPointId, setReload, setAddRepor
         postReport(selectedPointId, body).then((response) => {
             console.log(response.data);
             setAddReport(false);
-            setReload(true);
+            setReload(!reload);
         }).catch((error) => {
             console.log(error);
         })

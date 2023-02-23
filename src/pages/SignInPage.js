@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/userContext";
-import { postSignIn } from "../services/API";
+import { postSignIn } from "../services/API.js";
 
 export default function SignIn() {
     const [form, setForm] = useState({
@@ -24,7 +24,6 @@ export default function SignIn() {
         e.preventDefault();
         setInputState(true);
         setLoading(false);
-        console.log(form);
 
         postSignIn(form).then((response) => {
             localStorage.setItem(
@@ -44,14 +43,12 @@ export default function SignIn() {
             setLoading(true);
             setForm({
                 name: "",
-                email: "",
                 password: ""
             });
         }).catch((error) => {
             console.log(error);
             setForm({
                 name: "",
-                email: "",
                 password: ""
             })
             setInputState(false);
