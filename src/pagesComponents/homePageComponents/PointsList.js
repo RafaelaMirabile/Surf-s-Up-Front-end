@@ -15,6 +15,7 @@ export default function PointsList(){
 
     useEffect(() => {
         getPoints().then((response) => {
+            console.log(response.data)
             setPointsList(response.data);
         }).catch((error) => {
             console.log(error);
@@ -23,6 +24,7 @@ export default function PointsList(){
     return (
         <>
           {latitude.length === 0 ? <>
+          
                 {pointList.map((point, index) => (
                     <Points
                         key={index}

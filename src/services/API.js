@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL_BASE = process.env.URL_BASE;
+const URL_BASE =process.env.REACT_APP_URL_BASE;
 
 function createHeader() {
     const user = JSON.parse(localStorage.getItem("surfsup"));
@@ -14,6 +14,7 @@ function createHeader() {
 
 async function getPoints() {
     const points = `${URL_BASE}`;
+    console.log(points);
     return await axios.get(points);
 };
 
