@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL_BASE = "http://localhost:5000";
+const URL_BASE = process.env.URL_BASE;
 
 function createHeader() {
     const user = JSON.parse(localStorage.getItem("surfsup"));
