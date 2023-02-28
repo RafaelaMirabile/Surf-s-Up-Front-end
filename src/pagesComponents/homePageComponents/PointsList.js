@@ -4,6 +4,7 @@ import Reports from "./Reports.js";
 import { useEffect, useState } from "react"
 import styled from "styled-components";
 import { getPoints } from "../../services/API.js";
+import { useNavigate } from "react-router-dom";
 
 export default function PointsList(){
     const [pointList, setPointsList] = useState([]);
@@ -12,6 +13,7 @@ export default function PointsList(){
     const [selectedPointName, setSelectedPointName] = useState('');
     const [selectedPointId, setSelectedPointId] = useState(0);
     const [forecastOrReport, setForecastOReport] = useState('forcast');
+    const navigate = useNavigate()
 
     useEffect(() => {
         getPoints().then((response) => {
@@ -41,7 +43,7 @@ export default function PointsList(){
                 <>
                     <ForecastOrReport>
                         <ForcastButton forecastOrReport={forecastOrReport} onClick={() => setForecastOReport('forcast')}>Forcast</ForcastButton>
-                        <ReportButton forecastOrReport={forecastOrReport} onClick={() => setForecastOReport('report')}>Report</ReportButton>
+                        <ReportButton forecastOrReport={forecastOrReport} onClick={() => {setForecastOReport('report'); navigate("/reports") }}>Report</ReportButton>
                     </ForecastOrReport>
                     {forecastOrReport === 'forcast' ?
                         <Forecast

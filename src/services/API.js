@@ -39,17 +39,17 @@ async function postSignUp(body) {
 };
 
 async function getReports(pointId) {
-    const reports = `${URL_BASE}/${pointId}`
+    const reports = `${URL_BASE}/reports/:${pointId}`
     return await axios.get(reports);
 }
 
 async function postReport(pointId, body) {
-    const report = `${URL_BASE}/${pointId}`;
+    const report = `${URL_BASE}/reports/:${pointId}`;
     return await axios.post(report, body, createHeader());
 }
 
 async function deleteReport(reportId) {
-    const report = `${URL_BASE}/${reportId}`;
+    const report = `${URL_BASE}/reports/:${reportId}`;
     return await axios.delete(report, createHeader());
 }
 

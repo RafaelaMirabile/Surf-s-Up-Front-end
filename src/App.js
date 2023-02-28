@@ -6,6 +6,7 @@ import SignIn from "./pages/SignInPage.js";
 import SignUp from "./pages/SignUpPage.js";
 import FavPage from "./pages/FavPage.js";
 import GlobalStyle from "./styles/GlobalStyle.js";
+import Reports from "./pagesComponents/homePageComponents/Reports.js";
 
 function App() {
   const [userInfos, setUserInfos] = useState({
@@ -20,6 +21,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/reports" element={<Reports/>}/>
               <Route path="/signIn" element={<SignIn />} />
               <Route path="/signUp" element={<SignUp />} />
               <Route path="/fav" element={<FavPage />} />
