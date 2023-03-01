@@ -28,7 +28,6 @@ async function getForecast(body) {
 }
 
 async function postSignIn(body) {
-    console.log(body);
     const signIn = `${URL_BASE}/signIn`;
     return await axios.post(signIn, body);
 };
@@ -39,17 +38,17 @@ async function postSignUp(body) {
 };
 
 async function getReports(pointId) {
-    const reports = `${URL_BASE}/reports/:${pointId}`
+    const reports = `${URL_BASE}/reports/${pointId}`
     return await axios.get(reports);
 }
 
 async function postReport(pointId, body) {
-    const report = `${URL_BASE}/reports/:${pointId}`;
+    const report = `${URL_BASE}/reports/${pointId}`;
     return await axios.post(report, body, createHeader());
 }
 
 async function deleteReport(reportId) {
-    const report = `${URL_BASE}/reports/:${reportId}`;
+    const report = `${URL_BASE}/reports/${reportId}`;
     return await axios.delete(report, createHeader());
 }
 

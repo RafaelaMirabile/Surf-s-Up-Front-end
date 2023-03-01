@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "../pagesComponents/header/Header.js";
+import Sidebar from "../pagesComponents/header/Sidebar.js";
 import PointsList from "../pagesComponents/homePageComponents/PointsList.js"
 
 
@@ -7,6 +8,7 @@ export default function HomePage() {
     return (
         <Container>
             <Header/>
+            <Sidebar/>
             <PointsList/>
         </Container>
     )

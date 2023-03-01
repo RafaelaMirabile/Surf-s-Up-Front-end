@@ -1,10 +1,10 @@
 import Forecast from "./Forecast.js"
 import Points from "./Points.js"
 import Reports from "./Reports.js";
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import styled from "styled-components";
 import { getPoints } from "../../services/API.js";
-import { useNavigate } from "react-router-dom";
+import PointsContext from "../../contexts/pointsContext.js";
 
 export default function PointsList(){
     const [pointList, setPointsList] = useState([]);
@@ -13,7 +13,7 @@ export default function PointsList(){
     const [selectedPointName, setSelectedPointName] = useState('');
     const [selectedPointId, setSelectedPointId] = useState(0);
     const [forecastOrReport, setForecastOReport] = useState('forcast');
-    const navigate = useNavigate()
+    const {showList, setShowList} = useContext(PointsContext);
 
     useEffect(() => {
         getPoints().then((response) => {
@@ -24,8 +24,8 @@ export default function PointsList(){
         });
     }, []);
     return (
-        <>
-          {latitude.length === 0 ? <>
+        <Wrapper>
+          {showList === 0 ? <>
           
                 {pointList.map((point, index) => (
                     <Points
@@ -38,12 +38,13 @@ export default function PointsList(){
                         longitude={point.longitude}
                         setSelectedPointName={setSelectedPointName}
                         setSelectedPointId={setSelectedPointId}
+                        setShowList={setShowList}
                     />
                 ))} </> :
                 <>
                     <ForecastOrReport>
                         <ForcastButton forecastOrReport={forecastOrReport} onClick={() => setForecastOReport('forcast')}>Forcast</ForcastButton>
-                        <ReportButton forecastOrReport={forecastOrReport} onClick={() => {setForecastOReport('report'); navigate("/reports") }}>Report</ReportButton>
+                        <ReportButton forecastOrReport={forecastOrReport} onClick={() => {setForecastOReport('report')}}>Report</ReportButton>
                     </ForecastOrReport>
                     {forecastOrReport === 'forcast' ?
                         <Forecast
@@ -57,7 +58,7 @@ export default function PointsList(){
                         />}
                 </>
             }
-        </>
+        </Wrapper>
     )
 }
 
@@ -71,4 +72,10 @@ background-color: ${props => props.forecastOrReport === 'forcast' ? 'green' : 'b
 const ReportButton = styled.div`
 border: 2px solid purple;
 background-color: ${props => props.forecastOrReport === 'forcast' ? 'black' : 'green'};
+`
+const Wrapper = styled.div`
+border: 3px solid purple;
+margin-top: 10%;
+width: 100%;
+height: 100%;
 `
