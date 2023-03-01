@@ -35,6 +35,7 @@ const ReportDiv = styled.div`
 border: 2px solid red;
 display: flex;
 justify-content: space-between;
+margin-top: 10px;
 
 ion-icon{
     font-size: 24px;

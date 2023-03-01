@@ -125,6 +125,7 @@ background-image: linear-gradient(to right top, #095e79, #08708c, #0683a0, #0496
 const Logo = styled.div`
 display: flex;
 margin-bottom: 60px;
+width: 100%;
 p{
     color: #095e79;
     font-family: 'Righteous';

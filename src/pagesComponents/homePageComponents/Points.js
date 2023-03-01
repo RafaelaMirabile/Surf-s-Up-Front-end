@@ -28,7 +28,9 @@ export default function Points({ name, id, setLatitude, setLongitude, latitude, 
                 setSelectedPointId(id);
                 setShowList(1)
             }}>
-                {name}
+               <p>
+               {name}
+                </p> 
             </div>
         </Point>
     );
@@ -36,12 +38,18 @@ export default function Points({ name, id, setLatitude, setLongitude, latitude, 
 
 
 const Point = styled.div`
-border: 2px solid red;
+border-bottom: 1px solid #68D2DF;
 display: flex;
 justify-content: space-between;
+padding: 4px 0px 8px 0px;
+margin-top: 6px;
 
-ion-icon{
-    font-size: 24px;
-    color: red;
+p{
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19.976px;
+    line-height: 25px;
+    color: #095e79;
 }
 `

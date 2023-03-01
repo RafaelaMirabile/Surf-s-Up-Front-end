@@ -20,7 +20,7 @@ export default function Header() {
 const HeaderContainer = styled.header`
 width: 100%;
 height: 40px;
-background-color: #6B838A;
+background-color: #4F90A0;
 display: flex;
 justify-content: center;
 align-items:center;
@@ -29,7 +29,6 @@ top: 0%;
 right: 0%;
 box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-
 `
 const Logo = styled.div`
 display: flex;
