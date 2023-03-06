@@ -1,23 +1,33 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { favRequest } from "../../services/API";
 
-export default function Points({ name, id, setLatitude, setLongitude, latitude, longitude, setSelectedPointName, setSelectedPointId, setShowList }) {
-    const navigate = useNavigate();
+export default function Points({ name, id, setLatitude, setLongitude, latitude, longitude, setSelectedPointName,selectedPointName, setSelectedPointId, setShowList, forcastList, setForcastList }) {
 
-    function addToFav(id) {
-        const user = JSON.parse(localStorage.getItem("surfsup"));
-        if (!user) {
-            alert("Faca login para favoritar bro!");
-            navigate('/signIn');
-        } else {
-            favRequest(id).then((reponse) => {
-                console.log(reponse.data)
-            }).catch((error) => {
-                console.log(error)
-            })
-        };
+    
+function requestForcast(){
+    console.log(name)
+        const sendForcastRequest = forcastList.some((forcast,index) => forcast.pointName === name)
+        console.log(sendForcastRequest);    
+        
+        if (sendForcastRequest) {
+                console.log("ola",forcastList);
+            }
+            
+            else{
+                /*const body = {
+                    longitude: longitude,
+                    latitude: latitude
+                }
+                getForecast(body).then((response) => {
+                    setForecast(response.data.hours);
+                }).catch((error) => {
+                    console.log(error);
+                });
+                
+                forecastByHour = forecast.filter((forecast, index) => index === 6 || index === 9 || index === 15 || index === 18);*/
+                setForcastList([...forcastList,{pointName: name, forcast: "a"}]);
+            }
     }
+    
 
     return (
         <Point>
@@ -25,8 +35,9 @@ export default function Points({ name, id, setLatitude, setLongitude, latitude, 
                 setLatitude(latitude);
                 setLongitude(longitude);
                 setSelectedPointName(name);
+                requestForcast();
                 setSelectedPointId(id);
-                setShowList(1)
+                setShowList(1);
             }}>
                <p>
                {name}

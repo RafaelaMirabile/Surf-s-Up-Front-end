@@ -101,7 +101,7 @@ export default function SignUp() {
                     <button type="submit">Cadastrar</button>
                 ) : (
                     <button disabled={inputState}>
-                        <ThreeDots color="#FFFFFF" height={20} width={50} />
+                        <ThreeDots color="#52B6FF" height={20} width={50} />
                     </button>
                 )}
                 <LinkToLogin to="/signIn">

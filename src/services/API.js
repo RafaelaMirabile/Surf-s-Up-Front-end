@@ -14,7 +14,6 @@ function createHeader() {
 
 async function getPoints() {
     const points = `${URL_BASE}`;
-    console.log(points);
     return await axios.get(points);
 };
 

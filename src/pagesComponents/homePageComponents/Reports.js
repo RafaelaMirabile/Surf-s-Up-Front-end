@@ -6,8 +6,8 @@ import { getReports } from "../../services/API.js";
 import RegisterReport from "../ReportsComponents/RegisterReport.js";
 import Report from "../ReportsComponents/Report.js";
 
-export default function Reports({ selectedPointName, selectedPointId }) {
-    
+export default function Reports({ selectedPointName, selectedPointId, forcastList }) {
+
     const [reports, setReports] = useState([]);
     const [addReport, setAddReport] = useState(false);
     const [reload, setReload] = useState(false);
@@ -16,8 +16,8 @@ export default function Reports({ selectedPointName, selectedPointId }) {
 
     useEffect(() => {
         getReports(selectedPointId).then((response) => {
-            console.log(response.data);
-            setReports(response.data);
+            const reports = response.data.reverse();
+            setReports(reports);
         }).catch((error) => {
             console.log(error);
         });
@@ -46,7 +46,7 @@ export default function Reports({ selectedPointName, selectedPointId }) {
         <>
             {reports.length === 0 ?
                 <>
-                    <AddReport onClick={checkUser}>{addReport ? <AddReportButton>-</AddReportButton> : <AddReportButton>+</AddReportButton>}</AddReport>
+                    <AddReport>{addReport ? <AddReportButton onClick={checkUser}>-</AddReportButton> : <AddReportButton onClick={checkUser}>+</AddReportButton>}</AddReport>
                     {addReport ?
                         <RegisterReport
                             setAddReport={setAddReport}
@@ -59,7 +59,7 @@ export default function Reports({ selectedPointName, selectedPointId }) {
                 </>
                 :
                 <>
-                    <AddReport onClick={checkUser}>{addReport ? <AddReportButton>-</AddReportButton> : <AddReportButton>+</AddReportButton>}</AddReport>
+                    <AddReport>{addReport ? <AddReportButton onClick={checkUser}>-</AddReportButton> : <AddReportButton onClick={checkUser}>+</AddReportButton>}</AddReport>
                     {addReport ?
                         <RegisterReport
                             setAddReport={setAddReport}
@@ -68,32 +68,43 @@ export default function Reports({ selectedPointName, selectedPointId }) {
                             reload={reload}
                         />
                         : ''}
-                    {reports.map((report, index) => (
-                        <Report
-                            key={index}
-                            id={report.id}
-                            comment={report.report}
-                            userName={report.userName}
-                            stokedLevel={report.stokedLevel}
-                            setReload={setReload}
-                            reload={reload}
-                        />
-                    ))}
+                    <ReportDiv>
+                        {reports.map((report, index) => (
+                            <Report
+                                key={index}
+                                id={report.id}
+                                comment={report.report}
+                                userName={report.username_}
+                                date={report.createAt}
+                                stokedLevel={report.stokedlevel_}
+                                setReload={setReload}
+                                reload={reload}
+                            />
+                        ))}
+                    </ReportDiv>
                 </>
             }
         </>
     )
 }
-
+const ReportDiv = styled.div`
+border: 2px solid red;
+display: flex;
+max-height: 36rem;
+flex-direction: column;
+align-items: center;
+margin-top: 10px;
+overflow-y: auto;
+`
 const AddReport = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 `
-const AddReportButton= styled.div`
-width: 36px;
-height: 36px;
+const AddReportButton = styled.div`
+width: 46px;
+height: 46px;
 border: 3px dashed #68D2DF;
 border-radius: 50%;
 display: flex;
@@ -101,15 +112,13 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 color: #095e79;
-font-family: 'Lexend Deca';
-font-style: normal;
-font-weight: 700;
-line-height: 26px;
+font-family: 'Righteous';
+font-size: 22px;
 margin: 16px 0px 16px 0px;
 box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 `
-const NoReportsDiv= styled.div`
+const NoReportsDiv = styled.div`
 font-family: 'Lexend Deca';
 font-style: italic;
 font-weight: 700;

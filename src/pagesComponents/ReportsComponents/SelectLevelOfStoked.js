@@ -1,47 +1,47 @@
 import styled from "styled-components"
-import waveIcon from "../../assets/wave-lines.png"
+import logoduck from "../../assets/duck-head.png";
 
 export default function SelectLevelOfStoked({ id, level, setStokedLevel, stokedLevel }) {
     
-    function waves() {
+    function ducks() {
         if (id === 1) {
             return (
                 <div>
-                    <img src={waveIcon} />
+                    <img src={logoduck} />
                 </div>
             )
         } else if (id === 2) {
             return (
                 <div>
-                    <img src={waveIcon} />
-                    <img src={waveIcon} />
+                    <img src={logoduck} />
+                    <img src={logoduck} />
                 </div>
             )
         } else {
             return (
                 <div>
-                    <img src={waveIcon} />
-                    <img src={waveIcon} />
-                    <img src={waveIcon} />
+                    <img src={logoduck} />
+                    <img src={logoduck} />
+                    <img src={logoduck} />
                 </div>
             )
         }
     }
-    const qauntityOfWaves = waves();
+    const quantityOfDucks = ducks();
     return (
         <Stoked stoked={stokedLevel === id} onClick={() => { setStokedLevel(id) }}>
             <div>
                 {level}
             </div>
-            <div>{qauntityOfWaves}</div>
+            <div>{quantityOfDucks}</div>
         </Stoked>
     );
 }
 
 
 const Stoked = styled.div`
-background-color:#095e79 ;
 width: 30%;
+max-height: 75px;
 background: #095e79;
 border-radius: 4.63636px;
 font-family: 'Lexend Deca';
@@ -50,15 +50,16 @@ font-weight: 700;
 line-height: 26px;
 text-align: center;
 color: #52B6FF;
-border: none;
+border: ${({ stoked }) => stoked ? '3px solid #44ABF7' : 'none'};
+box-shadow:${({ stoked }) => stoked ? 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px' : ''} ;
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: space-evenly;
 align-items: center;
 margin-right: 10px;
-box-shadow: ${({ stoked }) => stoked ? ' 0px -1px 20px 4px rgba(104,210,223,1)' : ''};
+
 
 img{
-    height: 20px;
+    height: 24px;
 }
 `

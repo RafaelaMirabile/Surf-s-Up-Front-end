@@ -33,7 +33,7 @@ box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
 const Logo = styled.div`
 display: flex;
 p{
-    color: #68D2DF;
+    color: #095E79;
     font-family: 'Righteous';
     font-size: 30px;
 }

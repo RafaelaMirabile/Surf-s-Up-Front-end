@@ -84,12 +84,12 @@ export default function RegisterReport({ selectedPointId, setReload, setAddRepor
     )
 }
 const Wrapper = styled.div`
-border: 2px solid red;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
 padding: 10px;
 border: 3px dashed #68D2DF;
+max-height: 180px;
 border-radius: 10%;
 `
 const Form = styled.form`

@@ -14,15 +14,16 @@ export default function PointsList() {
     const [selectedPointId, setSelectedPointId] = useState(0);
     const [forecastOrReport, setForecastOReport] = useState('forcast');
     const { showList, setShowList } = useContext(PointsContext);
+    const [forcastList, setForcastList] = useState([]);
 
     useEffect(() => {
         getPoints().then((response) => {
-            console.log(response.data)
             setPointsList(response.data);
         }).catch((error) => {
             console.log(error);
         });
     }, []);
+console.log(forcastList);
     return (
         <Wrapper>
             {showList === 0 ? <>
@@ -36,8 +37,11 @@ export default function PointsList() {
                         latitude={point.latitude}
                         longitude={point.longitude}
                         setSelectedPointName={setSelectedPointName}
+                        selectedPointName={selectedPointName}
                         setSelectedPointId={setSelectedPointId}
                         setShowList={setShowList}
+                        forcastList={forcastList}
+                        setForcastList={setForcastList}
                     />
                 ))} </> :
                 <>
@@ -47,18 +51,18 @@ export default function PointsList() {
                         </p>
                     </PointName>
                     <ForecastOrReport>
-                        <ForcastButton forecastOrReport={forecastOrReport} onClick={() => setForecastOReport('forcast')}>Forcast</ForcastButton>
+                        <ForcastButton forecastOrReport={forecastOrReport} onClick={() => { setForecastOReport('forcast')}}>Forcast</ForcastButton>
                         <ReportButton forecastOrReport={forecastOrReport} onClick={() => { setForecastOReport('report') }}>Report</ReportButton>
                     </ForecastOrReport>
                     {forecastOrReport === 'forcast' ?
                         <Forecast
-                            latitude={latitude}
-                            longitude={longitude}
                             selectedPointName={selectedPointName}
+                            forcastList={forcastList}
                         /> :
                         <Reports
                             selectedPointName={selectedPointName}
                             selectedPointId={selectedPointId}
+                            forcastList={forcastList}
                         />}
                 </>
             }
@@ -69,15 +73,15 @@ export default function PointsList() {
 const ForecastOrReport = styled.div`
 width: 100%;
 display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+flex-direction: row;
 margin: 16px 0px 10px 0px;
+padding: 0px 10px 0px 10px;
 `
 const ForcastButton = styled.div`
 width: 50%;
+height: 36px;
 background: #095e79;
-border-radius: 4.63636px;
+border-radius: 2px;
 color: #68D2DF;
 font-family: 'Lexend Deca';
 font-style: normal;
@@ -96,8 +100,9 @@ background-color: ${props => props.forecastOrReport === 'forcast' ? '#095e79' : 
 `
 const ReportButton = styled.div`
 width: 50%;
+height: 36px;
 background: #095e79;
-border-radius: 4.63636px;
+border-radius: 2px;
 font-family: 'Lexend Deca';
 font-style: normal;
 font-weight: 700;
@@ -114,12 +119,13 @@ background-color: ${props => props.forecastOrReport === 'forcast' ? '#5b818a' : 
 `
 const Wrapper = styled.div`
 border: 2px solid purple;
+overflow-y: auto;
 width: 100%;
 height: 100vh;
 padding: 24px;
 `
 const PointName = styled.div`
-border-bottom: 1px dashed #68D2DF;
+border-bottom: 2px dashed #68D2DF;
 display: flex;
 justify-content: space-between;
 padding: 4px 0px 8px 0px;

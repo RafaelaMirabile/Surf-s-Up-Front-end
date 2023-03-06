@@ -8,6 +8,7 @@ import GlobalStyle from "./styles/GlobalStyle.js";
 import PointsContext from "./contexts/pointsContext.js";
 import CadastroPoint from "./pages/CadastroPoint.js";
 
+
 function App() {
   const [userInfos, setUserInfos] = useState({
     id: "",

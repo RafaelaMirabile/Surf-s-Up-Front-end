@@ -1,27 +1,65 @@
-import { useEffect, useState } from "react"
-import { getForecast } from "../../services/API.js";
+import { useContext, useEffect, useState } from "react"
+import styled from "styled-components";
+import AirTemperature from "../forcastComponents/AirTemperature";
+import SwellPeriod from "../forcastComponents/SwellPeriod";
+import WaveHeightDirection from "../forcastComponents/WaveHeight&Direction";
+import WindDirectionSpeed from "../forcastComponents/WindDirection&Speed";
 
-export default function Forecast({ latitude, longitude, selectedPointName }) {
+export default function Forecast({ selectedPointName, forcastList }) {
 
-    const [forecast, setForecast] = useState([]);
-
-    useEffect(() => {
-        const body = {
-            longitude: longitude,
-            latitude: latitude
-        }
-        /*getForecast(body).then((response) => {
-            setForecast(response.data.hours);
-        }).catch((error) => {
-            console.log(error);
-        });*/
-    }, []);
-
-    const forecastByHour = forecast.filter((forecast, index) => index === 6 || index === 9 || index === 15 || index === 18);
-    console.log(forecastByHour);
-    
+    const a = [{
+        waveHeight: '6',
+        airTemperature: '16',
+        currentDirection: 'SE',
+        windDirection: 'L',
+        swellPeriod: '10',
+        windSpeed: '10'
+    }, {
+        waveHeight: '5',
+        airTemperature: '20',
+        currentDirection: 'L',
+        windDirection: 'S',
+        swellPeriod: '8',
+        windSpeed: '14'
+    }, {
+        waveHeight: '4',
+        airTemperature: '23',
+        currentDirection: 'N',
+        windDirection: 'SE',
+        swellPeriod: '6',
+        windSpeed: '5'
+    }, {
+        waveHeight: '3',
+        airTemperature: '23',
+        currentDirection: 'S',
+        windDirection: 'NE',
+        swellPeriod: '5',
+        windSpeed: '5'
+    }]
     return (
-        <>ALA</>
+        <Wrapper>
+            <WaveHeightDirection
+            a={a}
+            />
+            <SwellPeriod
+                a={a}
+            />
+            <WindDirectionSpeed
+            a={a}
+            />
+            <AirTemperature
+                a={a}
+            />
+        </Wrapper>
     )
 
 }
+
+const Wrapper = styled.div`
+border: 2px solid orange;
+width: 100%;
+height: 80%;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+`
