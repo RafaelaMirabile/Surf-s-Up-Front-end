@@ -52,11 +52,11 @@ export default function Report({ comment, userName, stokedLevel, id, setReload, 
     }
     return (
         <CommentBox>
-            <div class="arrow">
-                <div class="outer"></div>
-                <div class="inner"></div>
+            <div className="arrow">
+                <div className="outer"></div>
+                <div className="inner"></div>
             </div>
-            <div class="message-body">
+            <div className="message-body">
                 <div>
                     <UserNameNDate>
                         <div>{userName}</div>

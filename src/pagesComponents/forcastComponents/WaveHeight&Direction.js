@@ -1,11 +1,11 @@
 import styled from "styled-components"
 import waveImg from "../../assets/wave.png"
 
-export default function WaveHeightDirection({ a }) {
+export default function WaveHeightDirection({ forecasrForDisplay }) {
 
     return (
         <Content>
-            {a.map((value, index) => (
+            {forecasrForDisplay.map((value, index) => (
                 <WaveInfo
                     key={index}
                     heigth={value.waveHeight}

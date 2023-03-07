@@ -1,5 +1,7 @@
+import { useContext, useState } from "react";
 import { slide as Menu } from "react-burger-menu"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import PointsContext from "../../contexts/pointsContext";
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
@@ -25,9 +27,9 @@ var styles = {
     height: '100%'
   },
   bmMenu: {
-    background: '#5b818a',
+    background: '#4F90A0',
     padding: '2.5em 1.5em 0',
-    fontSize: '1.15em'
+    fontSize: '1.15em',
   },
   bmMorphShape: {
     fill: '#373a47'
@@ -38,19 +40,44 @@ var styles = {
   },
   bmItem: {
     display: 'flex',
-    padding: '10px'
+    padding: '10px',
+    color: '#095E79',
+    fontFamily: 'Lexend Deca',
+    fontSize: '1.25em',
+    fontWeight: '700',
+    lineHeight: '25px',
+    textDecoration: 'none'
   },
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0.3)'
   }
 }
 
-  export default () => {
-    return (
-        <Menu styles={styles} >
-            <Link to="/cadastroPoint">
-                Picos Favoritos
-            </Link>
-        </Menu>
-    )
+export default () => {
+  const { setShowList } = useContext(PointsContext);
+  const [open, setOpen] = useState(false);
+
+  const handleIsOpen = () => {
+    setOpen(!open)
+  }
+
+  const closeSideBar = () => {
+    setShowList(0)
+    setOpen(false)
+  }
+
+  return (
+    <Menu
+      styles={styles}
+      isOpen={open}
+      onOpen={handleIsOpen}
+      onClose={handleIsOpen}>
+      <Link to="/" onClick={closeSideBar}>
+        Picos
+      </Link>
+      <Link to="/cadastroPoint">
+        Cadastrar Pico
+      </Link>
+    </Menu>
+  )
 }

@@ -6,50 +6,17 @@ import WaveHeightDirection from "../forcastComponents/WaveHeight&Direction";
 import WindDirectionSpeed from "../forcastComponents/WindDirection&Speed";
 
 export default function Forecast({ selectedPointName, forcastList }) {
+console.log(forcastList);
+const findForecastOfSelectedPoint = forcastList.filter(forecast => forecast.pointName === selectedPointName);
+const forecasrForDisplay = findForecastOfSelectedPoint.map(forecast => forecast.forcast);
+console.log(forecasrForDisplay.map((value) => value.airTemperature));
 
-    const a = [{
-        waveHeight: '6',
-        airTemperature: '16',
-        currentDirection: 'SE',
-        windDirection: 'L',
-        swellPeriod: '10',
-        windSpeed: '10'
-    }, {
-        waveHeight: '5',
-        airTemperature: '20',
-        currentDirection: 'L',
-        windDirection: 'S',
-        swellPeriod: '8',
-        windSpeed: '14'
-    }, {
-        waveHeight: '4',
-        airTemperature: '23',
-        currentDirection: 'N',
-        windDirection: 'SE',
-        swellPeriod: '6',
-        windSpeed: '5'
-    }, {
-        waveHeight: '3',
-        airTemperature: '23',
-        currentDirection: 'S',
-        windDirection: 'NE',
-        swellPeriod: '5',
-        windSpeed: '5'
-    }]
     return (
         <Wrapper>
             <WaveHeightDirection
-            a={a}
+            forecasrForDisplay={forecasrForDisplay}
             />
-            <SwellPeriod
-                a={a}
-            />
-            <WindDirectionSpeed
-            a={a}
-            />
-            <AirTemperature
-                a={a}
-            />
+    
         </Wrapper>
     )
 

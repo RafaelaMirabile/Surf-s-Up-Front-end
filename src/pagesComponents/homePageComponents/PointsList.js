@@ -23,7 +23,9 @@ export default function PointsList() {
             console.log(error);
         });
     }, []);
-console.log(forcastList);
+
+    console.log(forcastList);
+
     return (
         <Wrapper>
             {showList === 0 ? <>
