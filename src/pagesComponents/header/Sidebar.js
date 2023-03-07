@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { slide as Menu } from "react-burger-menu"
 import { Link, useNavigate } from "react-router-dom"
 import PointsContext from "../../contexts/pointsContext";
+import sair from "../../assets/signout.png"
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
@@ -40,6 +41,7 @@ var styles = {
   },
   bmItem: {
     display: 'flex',
+    justifyContent: 'space-between',
     padding: '10px',
     color: '#095E79',
     fontFamily: 'Lexend Deca',
@@ -54,15 +56,17 @@ var styles = {
 }
 
 export default () => {
+  
   const { setShowList } = useContext(PointsContext);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleIsOpen = () => {
     setOpen(!open)
   }
 
   const closeSideBar = () => {
-    setShowList(0)
+    setShowList(0);
     setOpen(false)
   }
 
@@ -78,6 +82,13 @@ export default () => {
       <Link to="/cadastroPoint">
         Cadastrar Pico
       </Link>
+      <div onClick={() => {
+              localStorage.clear("surfsup");
+              navigate("/signIn");
+            }}>
+        Sair
+        <img src={sair}/>
+      </div>
     </Menu>
   )
 }

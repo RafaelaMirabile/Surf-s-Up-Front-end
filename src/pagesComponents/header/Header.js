@@ -25,6 +25,7 @@ display: flex;
 justify-content: center;
 align-items:center;
 position: fixed;
+z-index: 1000;
 top: 0%;
 right: 0%;
 box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
