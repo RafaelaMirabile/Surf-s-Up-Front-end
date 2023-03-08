@@ -3,6 +3,7 @@ import { slide as Menu } from "react-burger-menu"
 import { Link, useNavigate } from "react-router-dom"
 import PointsContext from "../../contexts/pointsContext";
 import sair from "../../assets/signout.png"
+
 var styles = {
   bmBurgerButton: {
     position: 'fixed',
@@ -80,7 +81,7 @@ export default () => {
         Picos
       </Link>
       <Link to="/cadastroPoint">
-        Cadastrar Pico
+        Registrar Pico
       </Link>
       <div onClick={() => {
               localStorage.clear("surfsup");

@@ -2,12 +2,14 @@ import styled from "styled-components"
 import { useContext } from "react"
 import PointsContext from "../../contexts/pointsContext"
 import logoduck from "../../assets/duck-head.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
     const { setShowList } = useContext(PointsContext);
+    const navigate = useNavigate();
     return (
         <HeaderContainer>
-           <Logo onClick={() => { setShowList(0) }}>
+           <Logo onClick={() => { setShowList(0); navigate('/') }}>
                <p>Surf's</p>
                <img
                    src={logoduck}
@@ -28,8 +30,6 @@ position: fixed;
 z-index: 1000;
 top: 0%;
 right: 0%;
-box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 `
 const Logo = styled.div`
 display: flex;

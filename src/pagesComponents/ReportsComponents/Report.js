@@ -84,12 +84,18 @@ export default function Report({ comment, userName, stokedLevel, id, setReload, 
 }
 
 const CommentBox = styled.div`
-  clear: both;
-  position: relative;
+clear: both;
+position: relative;
+width: 100%;
+height: 160px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
   
   .message-body {
   float: left;
-  width: 90%;
+  width: 92%;
   height: auto;
   background-color: #87aab2;
   min-height: 8rem;
@@ -121,8 +127,8 @@ const CommentBox = styled.div`
   overflow: hidden;
   position: relative;
   float: left;
-  top: 16px;
-  right: -1px;  
+  top: 22px;
+  right:47%;
 
   .outer {
   width: 0;
@@ -149,20 +155,26 @@ const CommentBox = styled.div`
 `
 const UserNameNDate = styled.div`
 font-style: italic;
-width: 15rem;
+width: 50%;
 display: flex;
-margin: 4px 2px 0px 4px;
+margin: 4px 0px 0px 4px;
 padding: 2px;
 border-bottom: 1px dashed #5B818A;
 
 div{
     margin-right: 12px;
 }
+p{
+    width: 100%;
+}
 `
 const Comment = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
+   margin-left: 4px;
+   height: 50%;
+   padding: 2px;
 `
 const UserComment = styled.div`
 width: 20rem;
@@ -177,12 +189,45 @@ align-items: center;
 `
 const Stoked = styled.div`
 width: 10rem;
+height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
+
 img{
    height: 32px;
 }
+@media (max-width: 460px) {
+    img{
+        height: 30px;
+    }
+}
+@media (max-width: 438px) {
+    img{
+        height: 27px;
+    }
+}
+@media (max-width: 410px) {
+    img{
+        height: 24px;
+    }   
+}
+@media (max-width: 352px) {
+    img{
+        height: 20px;
+    }   
+}
+@media (max-width: 302px) {
+    img{
+        height: 15px;
+    }   
+}
+@media (max-width: 375px) {
+    img{
+        height: 22px;
+    }   
+}
+
 `
 const DeleteDiv = styled.div`
 display: flex;

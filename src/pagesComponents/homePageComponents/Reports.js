@@ -88,11 +88,9 @@ export default function Reports({ selectedPointName, selectedPointId, forcastLis
     )
 }
 const ReportDiv = styled.div`
-border: 2px solid red;
 display: flex;
-max-height: 36rem;
 flex-direction: column;
-align-items: center;
+max-height: 36rem;
 margin-top: 10px;
 overflow-y: auto;
 `

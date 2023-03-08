@@ -24,7 +24,7 @@ export default function RegisterReport({ selectedPointId, setReload, setAddRepor
         },
         {
             id: 3,
-            stokedLevel: 'Corre pra água!'
+            stokedLevel: 'Corre pra água'
         }
     ];
 
